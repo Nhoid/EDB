@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
+// includes personalizados
 #include "../include/structstring.h"
 #include "../include/linkedlist.h"
 #include "../include/cardapio.h"
@@ -18,8 +20,9 @@ void exibirMenu() {
     printf("| 1. Adicionar Pedido               |\n");
     printf("| 2. Remover Pedido                 |\n");
     printf("| 3. Processar Pedido               |\n");
-    printf("| 4. Listar Pedidos Pendentes       |\n");
-    printf("| 5. Listar Pedidos em Processamento|\n");
+    printf("| 4. Esperar pedido                 |\n");
+    printf("| 5. Listar Pedidos Pendentes       |\n");
+    printf("| 6. Listar Pedidos em Processamento|\n");
     printf("| 0. Sair                           |\n");
     printf("+----------------------------------+\n");
 }
@@ -96,6 +99,7 @@ void adicionarPedido(LinkedList* pedidos, Cardapio* cardapio) {
 void removerPedido(LinkedList* pedidos) {
 
     char prato[100] = ""; // variavel que ira pegar o prato a ser removido
+    char vazio = "";
     int indice = 0;  // variavel que ira pegar indice do pedido a ser modificado
 
     printf("PEDIDOS:\n");
@@ -115,7 +119,7 @@ void removerPedido(LinkedList* pedidos) {
     scanf("%99[^\n]", prato); // pega o nome do prato
     getchar();
 
-    if (prato == "") return; // nao escolheu nenhum prato
+    if (prato == vazio) return; // nao escolheu nenhum prato
 
     string* newString = stringBuilder(prato);
 
@@ -141,6 +145,18 @@ void processarPedido(LinkedList* pedidos, Queue* emProcessamento) {
     removeAtFirst(pedidos); // remove pedido da lista de pedidos
 
     printf("Pedido %s em processamento...\n", front(emProcessamento)->element.text );
+}
+
+// faz com que a cozinha libere um pedido e a fila ande
+void esperarCozinha(Queue* emProcessamento) {
+    NodeQueue* pedido = dequeue(emProcessamento);
+
+    printf("Esperando cozinha liberar o pedido %s...\n", pedido->element.text);
+    sleep(3);
+    printf("Pedido liberado pela cozinha\n");
+
+    return;
+
 }
 
 void listarPedidosPendentes(LinkedList* pedidos) {

@@ -44,9 +44,12 @@ int main(){
                 processarPedido(pedidos, emProcessamento); // envia o pedido mais antigo para a fila de processamento
                 break;
             case 4:
+                esperarCozinha(emProcessamento); // espera a cozinha liberar o primeiro prato da fila
+                break;    
+            case 5:
                 listarPedidosPendentes(pedidos); // printa todos os pedidos
                 break;
-            case 5:
+            case 6:
                 listarPedidosEmProcessamento(emProcessamento); // printa a todos os pedidos na fila de processamento
                 break;
         }
