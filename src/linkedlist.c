@@ -227,15 +227,16 @@ void clearLinkedList(LinkedList* linkedList){
     free(linkedList); // REMOVE A LISTA
 }
 
+// printa uma lista inteira
 int printList(const LinkedList* linkedlist) {
 
-    if (isListEmpty(linkedlist)) return 0;
+    if (isListEmpty(linkedlist)) return 0; // verifica se tem elementos a serem printados
 
-    NodeList* pointer = getFirst(linkedlist);
+    NodeList* pointer = getFirst(linkedlist); // ponteiro para percorrer a lista
 
     int indice = 1;
 
-    while ( pointer != linkedlist->tail ) {
+    while ( pointer != linkedlist->tail ) { // itera sobre todos elementos da lista
         printf("%d - %s\n", indice ,pointer->element.text);
         indice++;
         pointer = pointer->next;

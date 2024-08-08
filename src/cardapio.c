@@ -8,6 +8,7 @@
 #include "../include/linkedlist.h"
 #include "../include/structstring.h"
 
+// cria a lista de entradas
 LinkedList* entradas(){
 
     LinkedList* entrada = builderList();
@@ -20,7 +21,7 @@ LinkedList* entradas(){
 
     return entrada;
 }
-
+// cria a lista dos principais
 LinkedList* principais() {
 
     LinkedList* principais = builderList();
@@ -33,7 +34,7 @@ LinkedList* principais() {
 
     return principais;
 }
-
+// cria a lista das sobremesas
 LinkedList* sobremesas() {
     LinkedList* sobremesa = builderList();
 
@@ -46,11 +47,12 @@ LinkedList* sobremesas() {
     return sobremesa;
 }
 
+// cria cardapio
 Cardapio* cardapio_builder() {
 
-    Cardapio* cardapio = (Cardapio*)malloc(3 * sizeof(Cardapio));
+    Cardapio* cardapio = (Cardapio*)malloc(3 * sizeof(Cardapio)); // aloca tamanho suficiente
 
-    if (!cardapio) {
+    if (!cardapio) { // verifica se a alocacao foi bem sucessida
         printf("Erro ao criar cardapio\n");
         return NULL;
     }
@@ -66,11 +68,11 @@ Cardapio* cardapio_builder() {
     return cardapio;
 }
 
-int max(int a, int b) {
+int max(int a, int b) { // funcao auxiliar
     return a > b ? a : b;
 }
 
-void espacamento(int espaco){
+void espacamento(int espaco){ // funcao auxiliar
     while (espaco > 0) {
         printf(" ");
         espaco--;
@@ -79,16 +81,17 @@ void espacamento(int espaco){
 
 void mostrarCardapio(Cardapio* cardapio) {
 
+    // pega listas de pratos
     LinkedList* entradas = cardapio[0].lista;
     LinkedList* principais = cardapio[1].lista;
     LinkedList* sobremesas = cardapio[2].lista;
 
-    // Calcular o número máximo de itens entre as três listas
+    // Calcular o numero maximo de itens entre as tres listas, caso tenham modificado o cardapio original
     int i = max(sobremesas->size, max(entradas->size, principais->size));
 
-    int numeroEntrada = 1, numeroPrincipal = 1, numeroSobremesa = 1; // numero do pedido
+    int numeroEntrada = 1, numeroPrincipal = 1, numeroSobremesa = 1; // numero do pedido, para adicionar os indices dos pedidos
 
-    // Definir o espaço máximo para cada coluna
+    // Definir o espaço maximo para cada coluna
     int larguraColuna = 40;
 
     // Imprimir cabeçalhos

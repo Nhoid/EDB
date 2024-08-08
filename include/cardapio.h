@@ -8,16 +8,16 @@ typedef struct Cardapio {
     char* nome; // Nome para identificar o tipo de lista (por exemplo, "Entradas", "Principais", "Sobremesas")
 } Cardapio;
 
-LinkedList* entradas();
+LinkedList* entradas(); // funcao que gera os pratos de entrada
 
-LinkedList* principais();
+LinkedList* principais(); // funcao que gera os pratos de entrada
 
-LinkedList* sobremesas();
+LinkedList* sobremesas(); // funcao que gera os pratos de entrada
 
-void espacamento(int espaco);
+void espacamento(int espaco); // funcao auxiliar para formatacao do cardapio
 
-Cardapio* cardapio_builder();
+Cardapio* cardapio_builder(); // funcao que retorna o cardapio
 
-void mostrarCardapio(Cardapio* cardapio);
+void mostrarCardapio(Cardapio* cardapio); // funcao que mostra o cardapio
 
 #endif // CARDAPIO_H

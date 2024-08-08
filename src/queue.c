@@ -107,15 +107,16 @@ void deleteQueue(Queue* queue){
     free(queue);
 }
 
+// funcao que printa uma fila
 int printQueue(const Queue* queue) {
 
-    if(isQueueEmpty(queue)) return 0;
+    if(isQueueEmpty(queue)) return 0; // verifica se tem elementos
 
-    NodeQueue* pointer = front(queue);
+    NodeQueue* pointer = front(queue); // ponteiro para percorrer a fila
 
     int indice = 1;
 
-    while (pointer != NULL){
+    while (pointer != NULL){ // itera sobre a lista
         printf("%d - %s\n", indice, pointer->element.text);
         indice++;
         pointer = pointer->next;

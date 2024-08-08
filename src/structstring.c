@@ -8,7 +8,7 @@
 #include <stdbool.h>
 
 // construtor de string
-string* stringBuilder(char* text){
+string* stringBuilder(char* text){ // cria uma struct string com algum texto
 
     if (text == NULL) return stringEmpty();
 
@@ -20,7 +20,7 @@ string* stringBuilder(char* text){
     return algumacoisa;
 }
 
-string* stringEmpty(){
+string* stringEmpty(){ // cria uma struct string sem texto
     string* algumacoisa = (string*) malloc(sizeof(string));
 
     algumacoisa->text = NULL;
@@ -95,17 +95,17 @@ void removeSubString(string* string1, const string* subString) {
 
     bool fim = false;
 
-    if (pointer == NULL) {
+    if (pointer == NULL) { // verifica se a subString foi encontrada
         printf("Prato nao encontrado.\n");
         return;
     }
 
-    if (pointer == string1) {
+    if (pointer == string1) { // verifica se a subString esta no comeco da string original
         removeFirstChars(string1, subString->length);
         return;
     }
 
-    if ( (pointer + subString->length) != (string1->text + string1->length) ) {
+    if ( (pointer + subString->length) != (string1->text + string1->length) ) { // verifica se a subString esta no final da string
         string* divisor = stringBuilder("");
         concat(subString, divisor);
     } else {
