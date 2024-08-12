@@ -44,15 +44,23 @@ void removeNode(LinkedList* list, NodeList* node) {
 
     NodeList* pointer = list->header;
 
-    while (pointer->next != node){
+    if (pointer == node) {
+        removeAtFirst(list);
+        return;
+    }
+
+    while ( pointer->next != node  && pointer->next != NULL){
         pointer = pointer->next;
     }
 
-    if (list->tail == node) {
-        list->tail = pointer;
+    if ( pointer->next == NULL ) {
+        printf("Concurso nao encontrado.\n");
+        return;
     }
 
-    pointer->next = node->next;
+    if (list->tail == node) list->tail = pointer;
+    else pointer->next = node->next;
+
     node->next = NULL;
 
     list->size--;
@@ -81,8 +89,6 @@ void addNodeAtFirst(LinkedList* list, NodeList* node) {
     list->header = node;
 
     list->size++;
-
-    return;
 }
 
 void addNodeAtLast(LinkedList* list, NodeList* node) {
@@ -107,7 +113,7 @@ void removeAtFirst(LinkedList* list) {
 
 NodeList* searchById(const LinkedList* list, unsigned int concurso) {
 
-    if (isListEmpty(list)) return NULL;
+    if (list->size == 0) return NULL;
 
     NodeList* pointer = list->header;
 
@@ -118,7 +124,7 @@ NodeList* searchById(const LinkedList* list, unsigned int concurso) {
     return pointer->element->numero == concurso ? pointer : NULL;
 }
 
-bool isListEmpty(const LinkedList* list){
+bool isListEmpty(LinkedList* list){
     return list->size == 0;
 }
 

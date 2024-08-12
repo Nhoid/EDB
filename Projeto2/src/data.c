@@ -9,28 +9,21 @@ Data dataBuilder(char data[]) {
 
     char* token;
 
-    
-
     token = strtok(data, "-");
 
-    for (int i = 0; i < 2; i++) {
-        builder.day[i] = token[i];
-    }
-    builder.day[3] = '\0';
+    strncpy(builder.day, token, 2);
+    builder.day[2] = '\0';
+
     token = strtok(NULL, "-");
 
-    
+    strncpy(builder.month, token, 2);
+    builder.month[2] = '\0';
 
-    for (int i = 0; i < 2; i++) {
-        builder.month[i] = token[i];
-    }
-    builder.month[3] = '\0';
     token = strtok(NULL, "-");
 
-    for (int i = 0; i < 4; i++) {
-        builder.year[i] = token[i];
-    }
+    strncpy(builder.year, token, 4);
     builder.year[4] = '\0';
+    
     return builder;
 }
 

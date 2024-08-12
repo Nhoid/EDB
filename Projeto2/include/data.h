@@ -6,7 +6,7 @@
 typedef struct {
     char day[3];
     char month[3];
-    char year[4];
+    char year[5];
 } Data;
 
 Data dataBuilder(char data[]);

@@ -43,7 +43,7 @@ NodeList* searchById(const LinkedList* list, unsigned int concurso); // Procurar
 
 int printList(const LinkedList* list); // printa a lista
 
-bool isListEmpty(const LinkedList* list); // verifica se tem algum elemento na lista
+bool isListEmpty(LinkedList* list); // verifica se tem algum elemento na lista
 
 void clearLinkedList(LinkedList* list); // Deleta uma lista
 
