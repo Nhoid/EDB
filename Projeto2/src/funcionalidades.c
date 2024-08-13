@@ -15,28 +15,7 @@
 
 bool isCSV(const char* filename) {
     size_t len = strlen(filename);
-    if (len < 4) return false;
-
-    char extension[5];  // 4 characters + 1 for the null terminator
-    strncpy(extension, &filename[len - 4], 4);
-    extension[4] = '\0';  // Ensure null termination
-
-    printf("%s\n", extension);
-
-    return strcmp(extension, ".csv") == 0;
-}
-
-bool isTSV(const char* filename) {
-    size_t len = strlen(filename);
-    if (len < 4) return false;
-
-    char extension[5];
-    strncpy(extension, &filename[len - 4], 4);
-    extension[4] = '\0';
-
-    printf("%s\n", extension);
-
-    return strcmp(extension, ".tsv") == 0;
+    return len >= 4 && strcmp(&filename[len - 4], ".csv") == 0;
 }
 
 void exibirMenu(){
@@ -137,21 +116,25 @@ Concurso* processarString(char* string, char delimitador) {
     char* data;
     int bolas[6];
 
+    char delimitadorStr[2] = {delimitador, '\0'};
+
     char* token;
+
+    printf("%s\n", delimitadorStr);
     
-    token = strtok(string, delimitador);
+    token = strtok(string, delimitadorStr);
 
     key = atoi(token);
 
-    token = strtok(NULL, delimitador);
+    token = strtok(NULL, delimitadorStr);
     
     data = strdup(token);
 
-    token = strtok(NULL, delimitador);
+    token = strtok(NULL, delimitadorStr);
 
     for (int i = 0; i < 6; i++){
         bolas[i] = atoi(token);
-        token = strtok(NULL, delimitador);
+        token = strtok(NULL, delimitadorStr);
     }
     
     return concursoBuilder(key, data, bolas);
@@ -165,16 +148,8 @@ void lerArquivo(HashTable* hash, char* filename) {
         return;
     }
 
-    char delimitador;
 
-    if (isCSV(filename)) delimitador = ",";
-    else if (isTSV(filename)) delimitador = " ";
-    else {
-        printf("Tipo de arquivo nao suportado\n");
-        return;
-    }
-
-    printf("%c\n", delimitador);
+    bool csv = isCSV(filename);
 
     bool cabecalho = true;
 
@@ -186,7 +161,8 @@ void lerArquivo(HashTable* hash, char* filename) {
 
             line[strcspn(line, "\n")] = 0;
 
-            addElement(hash, processarString(line, delimitador));
+            if (csv) addElement(hash, processarString(line, ','));
+            else addElement(hash, processarString(line, " "));
 
         } else {
             cabecalho = false;
