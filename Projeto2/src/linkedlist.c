@@ -144,7 +144,7 @@ bool isListEmpty(LinkedList* list){
     return list->size == 0;
 }
 
-int printList(const LinkedList* list) {
+void printList(const LinkedList* list) {
 
     NodeList* pointer = list->header; // Começa a impressão a partir do cabeçalho
 

@@ -14,30 +14,31 @@
 #include "../include/funcionalidades.h"
 
 
-int main(int argv, char* args[]) {
+int main(int argc, char* argv[]) {
 
     int size = 50; // tamanho padrao
 
     bool file = false; // verifica se foi passado arquivo como argumento
 
-    // processamento de entrada
-    if (strcmp(args[1], "-s") == 0) {
-        // Define o tamanho da tabela hash baseado no argumento
-        size = atoi(args[2]);
-    }
+    if (argc > 1) {
+        // processamento de entrada
+        if (strcmp(argv[1], "-s") == 0) {
+            // Define o tamanho da tabela hash baseado no argumento
+            size = atoi(argv[2]);
+        }
 
-    if (strcmp(args[1], "-f") == 0) {
-        // Define o tamanho da tabela hash baseado no número de linhas do arquivo + 1
-        size = contarlinhas(args[2]) + 1;
-        file = true;
+        if (strcmp(argv[1], "-f") == 0) {
+            // Define o tamanho da tabela hash baseado no número de linhas do arquivo + 1
+            size = contarlinhas(argv[2]) + 1;
+            file = true;
+        }
     }
-
     Estatisticas* bolas = getBolas(); // responsavel por guardar estatisticas
 
     HashTable* hash; // tabela hash
 
     if (file) 
-        hash = iniciarArquivo(args[2], bolas); // le arquivo e inicializa a tabela hash
+        hash = iniciarArquivo(argv[2], bolas); // le arquivo e inicializa a tabela hash
     else 
         hash = hashBuilder(size); // se nao for passado nenhum arquivo como parametro, cria uma tabela hash vazia
 

@@ -41,7 +41,7 @@ void removeAtLast(LinkedList* list); // remove o ultimo elemento da lista
 
 NodeList* searchById(const LinkedList* list, unsigned int concurso); // Procurar um node pelo conteúdo
 
-int printList(const LinkedList* list); // printa a lista
+void printList(const LinkedList* list); // printa a lista
 
 bool isListEmpty(LinkedList* list); // verifica se tem algum elemento na lista
 

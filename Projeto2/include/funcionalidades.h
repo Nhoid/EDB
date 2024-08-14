@@ -43,4 +43,6 @@ void limparEstatisticas(Estatisticas* estatisticas); // apaga todas as estatisti
 
 void apresentarEstatisticas(HashTable* hash, Estatisticas* original); // mostra todas as estatisticas
 
+void insertionSort(Estatisticas* arr); // insectionSort
+
 #endif // FUNCIONALIDADES_H
