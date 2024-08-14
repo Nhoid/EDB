@@ -13,12 +13,14 @@
 
 #include "../include/funcionalidades.h"
 
+
 int main(int argv, char* args[]) {
 
-    int size = 50;
+    int size = 50; // tamanho padrao
 
-    bool file = false;
+    bool file = false; // verifica se foi passado arquivo como argumento
 
+    // processamento de entrada
     if (strcmp(args[1], "-s") == 0) {
         size = atoi(args[2]);
     }
@@ -26,35 +28,43 @@ int main(int argv, char* args[]) {
     if (strcmp(args[1], "-f") == 0) {
         size = contarlinhas(args[2]) + 1;
         file = true;
-
     }
 
-    HashTable* hash = hashBuilder(size);
+    Estatisticas* bolas = getBolas(); // responsavel por guardar estatisticas
 
-    if (file) lerArquivo(hash, args[2]);
+    HashTable* hash; // tabela hash
+
+    if (file) hash = iniciarArquivo(args[2], bolas); // le arquivo
+    else hash = hashBuilder(size); // se nao for passado nenhum arquivo como parametro
 
     int opcao;
 
     do {
         exibirMenu();
         scanf("%d", &opcao);
-
+        getchar();
         switch (opcao) {
+            case 0:
+                break;
             case 1:
-                inserirConcurso(hash);
+                inserirConcurso(hash, bolas);
                 break;
             case 2:
                 buscarConcurso(hash);
                 break;
             case 3:
-                removerConcurso(hash);
+                removerConcurso(hash, bolas);
                 break;
             case 4:
                 printConcursos(hash);
                 break;
             case 5:
                 clearHashTable(hash);
-                hash = carregarArquivo(hash);
+                limparEstatisticas(bolas);
+                hash = carregarArquivo(bolas);
+                break;
+            case 6:
+                apresentarEstatisticas(hash, bolas);
                 break;
             default:
                 printf("Opção inválida. Tente novamente.\n");

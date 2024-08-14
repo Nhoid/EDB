@@ -9,7 +9,7 @@ typedef struct {
     char year[5];
 } Data;
 
-Data dataBuilder(char data[]);
+Data dataBuilder(char* data);
 
 bool sameData(Data data1, Data data2); // compara se eh a msm data
 bool sameDay(Data data1, Data data2); // compara se eh o mesmo dia

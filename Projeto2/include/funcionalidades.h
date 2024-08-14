@@ -1,27 +1,46 @@
 #ifndef FUNCIONALIDADES_H
 #define FUNCIONALIDADES_H
 
+#include <stdbool.h>
+
 #include "hashtable.h"
 #include "concurso.h"
 #include "linkedlist.h"
 #include "data.h"
 
-void exibirMenu();
+typedef struct {
+    int bola;
+    int repeticao;
+} Estatisticas;
 
-void inserirConcurso(HashTable* hash);
+void exibirMenu(); // menu de escolhas
 
-void buscarConcurso(HashTable* hash);
+Estatisticas* getBolas(); // gera estatisticas
 
-void removerConcurso(HashTable* hash);
+void inserirConcurso(HashTable* hash, Estatisticas* estatisticas); // adicionar novos concursos
 
-void printConcursos(HashTable* hash);
+void contarBolas(int bolas[], Estatisticas* estatisticas); // salva estatisticas
 
-int contarlinhas(char* fileName);
+void diminuirEstatisticas(int bolas[], Estatisticas* estatisticas); // diminui estatisticas, em caso de remocao de concurso
 
-Concurso* processarString(char* string, bool csv);
+void buscarConcurso(HashTable* hash); // busca um concurso
 
-void lerArquivo(HashTable* hash, char* filename);
+void removerConcurso(HashTable* hash, Estatisticas* estatisticas); // exclui um concurso
 
-HashTable* carregarArquivo();
+void printConcursos(HashTable* hash); // mostra todos os concursos
+
+int contarlinhas(char* fileName); // conta linhas de um arquivo
+
+Concurso* processarString(char* string, bool csv); // processa linha de arquivo
+
+void lerArquivo(HashTable* hash, char* filename, Estatisticas* estatisticas); // le um arquivo
+
+HashTable* iniciarArquivo(char* filename, Estatisticas* estatisticas); // carrega um arquivo no inicio do programa
+
+HashTable* carregarArquivo(Estatisticas* estatisticas); // carrega um arquivo passado
+
+void limparEstatisticas(Estatisticas* estatisticas); // apaga todas as estatisticas
+
+void apresentarEstatisticas(HashTable* hash, Estatisticas* original); // mostra todas as estatisticas
 
 #endif // FUNCIONALIDADES_H

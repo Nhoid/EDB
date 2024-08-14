@@ -20,6 +20,10 @@ Concurso* concursoBuilder(unsigned int numero, char data[], int bolas[]) {
 }
 
 void printConcurso(Concurso* concurso) {
+
+    if (concurso == NULL) return;
+
+
     printf("Concurso: %d", concurso->numero);
     printf("\tData: ");
     printf("%s-", concurso->data.day);

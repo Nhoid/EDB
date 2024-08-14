@@ -75,7 +75,7 @@ void removeFromHash(HashTable* hashT, unsigned int key) {
 }
 
 void clearHashTable(HashTable* hash) {
-    for (int i = 0; i < hash->capacity; i++){
+    for (unsigned int i = 0; i < hash->capacity; i++){
         clearLinkedList(hash->entries[i].list);
     }
 
@@ -83,7 +83,7 @@ void clearHashTable(HashTable* hash) {
 }
 
 void printHashTable(HashTable* hash) {
-    for (int i = 0; i < hash->capacity; i++){
+    for (unsigned int i = 0; i < hash->capacity; i++){
         printList(hash->entries[i].list);
     }
 }

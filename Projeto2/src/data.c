@@ -4,24 +4,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Data dataBuilder(char data[]) {
+Data dataBuilder(char* data) {
     Data builder;
 
-    char* token;
+    // Usamos sscanf para extrair o dia, mês e ano da string `data`
+    sscanf(data, "%2[^-]-%2[^-]-%4s", builder.day, builder.month, builder.year);
 
-    token = strtok(data, "-");
-
-    strncpy(builder.day, token, 2);
+    // Assegura que o buffers terminam com '\0'
     builder.day[2] = '\0';
-
-    token = strtok(NULL, "-");
-
-    strncpy(builder.month, token, 2);
     builder.month[2] = '\0';
-
-    token = strtok(NULL, "-");
-
-    strncpy(builder.year, token, 4);
     builder.year[4] = '\0';
     
     return builder;
