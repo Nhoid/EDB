@@ -16,8 +16,8 @@ void eraseString(string* string1); // apagar string da memoria
 
 void removeFirstChars(string* string1, size_t size);
 
-void removeSubString(string* string1, const string* subString); // procura uma substring dentro de uma string e remove ela
+void removeSubString(string* string1, string* subString); // procura uma substring dentro de uma string e remove ela
 
-void concat(string* string1, const string* string2); // funcao de concatenacao personalizada
+void concat(string* string1, string* string2); // funcao de concatenacao personalizada
 
 #endif // STRUCTSTRING_H

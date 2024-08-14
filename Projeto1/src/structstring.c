@@ -46,7 +46,7 @@ void eraseString(string* string1){
 
 
 // funcao personalizada de concatenacao para concatenar e adicionar ", " entre as strings que serao os pedidos
-void concat(string* string1, const string* string2){
+void concat(string* string1, string* string2){
 
     if (string2->text == NULL) return; // vai concatenar oq? o vento?
 
@@ -89,19 +89,17 @@ void removeFirstChars(string* string1, size_t size) {
 }
 
 
-void removeSubString(string* string1, const string* subString) {
+void removeSubString(string* string1, string* subString) {
 
     char* pointer = strstr(string1->text, subString->text);
-
-    bool fim = false;
 
     if (pointer == NULL) { // verifica se a subString foi encontrada
         printf("Prato nao encontrado.\n");
         return;
     }
 
-    if (pointer == string1) { // verifica se a subString esta no comeco da string original
-        removeFirstChars(string1, subString->length);
+    if (pointer == string1->text) { // verifica se a subString esta no comeco da string original
+        removeFirstChars(string1, subString->length + 2);
         return;
     }
 

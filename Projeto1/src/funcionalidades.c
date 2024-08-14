@@ -99,7 +99,7 @@ void adicionarPedido(LinkedList* pedidos, Cardapio* cardapio) {
 void removerPedido(LinkedList* pedidos) {
 
     char prato[100] = ""; // variavel que ira pegar o prato a ser removido
-    char vazio = "";
+    char* vazio = "";
     int indice = 0;  // variavel que ira pegar indice do pedido a ser modificado
 
     printf("PEDIDOS:\n");
@@ -119,7 +119,7 @@ void removerPedido(LinkedList* pedidos) {
     scanf("%99[^\n]", prato); // pega o nome do prato
     getchar();
 
-    if (prato == vazio) return; // nao escolheu nenhum prato
+    if (strcmp(prato, vazio) == 0) return; // nao escolheu nenhum prato
 
     string* newString = stringBuilder(prato);
 
@@ -149,6 +149,12 @@ void processarPedido(LinkedList* pedidos, Queue* emProcessamento) {
 
 // faz com que a cozinha libere um pedido e a fila ande
 void esperarCozinha(Queue* emProcessamento) {
+
+    if (emProcessamento->size == 0) {
+        printf("A cozinha nao esta fazendo nenhum pedido no momento.\n");
+        return;
+    }
+
     NodeQueue* pedido = dequeue(emProcessamento);
 
     printf("Esperando cozinha liberar o pedido %s...\n", pedido->element.text);
