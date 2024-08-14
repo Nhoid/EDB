@@ -18,7 +18,7 @@ void printConcursos(HashTable* hash);
 
 int contarlinhas(char* fileName);
 
-Concurso* processarString(char* string, char delimitador);
+Concurso* processarString(char* string, bool csv);
 
 void lerArquivo(HashTable* hash, char* filename);
 

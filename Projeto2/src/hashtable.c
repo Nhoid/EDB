@@ -30,6 +30,9 @@ int hash(unsigned int key, unsigned int size){
 }
 
 void addElement(HashTable* hashT, Concurso* concurso) {
+
+    if (concurso == NULL) return;
+
     int indice = hash(concurso->numero, hashT->capacity);
 
     addNodeAtFirst(hashT->entries[indice].list, nodeListBuilder(concurso));

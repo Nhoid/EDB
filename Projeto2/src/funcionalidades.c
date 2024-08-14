@@ -111,32 +111,26 @@ int contarlinhas(char* fileName) {
 
 }
 
-Concurso* processarString(char* string, char delimitador) {
+Concurso* processarString(char* string, bool csv) {
     unsigned int key;
-    char* data;
+    char data[11];
     int bolas[6];
 
-    char delimitadorStr[2] = {delimitador, '\0'};
+    if (csv) {
+        if (sscanf(string, "%u,%10[^,],%d,%d,%d,%d,%d,%d", &key, data, &bolas[0], &bolas[1], &bolas[2], &bolas[3], &bolas[4], &bolas[5]) != 8) {
+            fprintf(stderr, "erro ao ler linha.\n");
+            return NULL;
+        }
+    } else {
+        if (sscanf(string, "%u\t%10s\t%d\t%d\t%d\t%d\t%d\t%d", &key, data, &bolas[0], &bolas[1], &bolas[2], &bolas[3], &bolas[4], &bolas[5]) != 8) {
+            fprintf(stderr, "erro ao ler linha.\n");
+            return NULL;
+        }
 
-    char* token;
-
-    printf("%s\n", delimitadorStr);
-    
-    token = strtok(string, delimitadorStr);
-
-    key = atoi(token);
-
-    token = strtok(NULL, delimitadorStr);
-    
-    data = strdup(token);
-
-    token = strtok(NULL, delimitadorStr);
-
-    for (int i = 0; i < 6; i++){
-        bolas[i] = atoi(token);
-        token = strtok(NULL, delimitadorStr);
     }
-    
+
+    data[11] = '\0';
+
     return concursoBuilder(key, data, bolas);
 }
 
@@ -161,8 +155,7 @@ void lerArquivo(HashTable* hash, char* filename) {
 
             line[strcspn(line, "\n")] = 0;
 
-            if (csv) addElement(hash, processarString(line, ','));
-            else addElement(hash, processarString(line, " "));
+            addElement(hash, processarString(line, csv));
 
         } else {
             cabecalho = false;
