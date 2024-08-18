@@ -118,7 +118,8 @@ A implementação detalhada dessas funções pode ser encontrada no arquivo `src
 
 > **Observação**: Tanto a `LinkedList` quanto a `Queue` utilizam estruturas semelhantes para encapsular os dados (`NodeList` e `NodeQueue`, respectivamente). Ambas as estruturas possuem funções para criar um novo nó e adicionar esse nó à estrutura correspondente.
 >
-> ### Exemplo de Uso
+
+### Exemplo de Uso
 
 Para utilizar o sistema de gerenciamento de pedidos do restaurante, siga estas etapas:
 
