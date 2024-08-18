@@ -1,3 +1,5 @@
+# Gerenciador de Concursos da Mega-Sena com Tabela de Dispersão
+
 ### Descrição Geral
 
 Este projeto envolve o desenvolvimento de um gerenciador de concursos da Mega-Sena, que utiliza uma tabela de dispersão (hash table) para armazenar e acessar os dados dos concursos. O sistema deve ser capaz de executar operações básicas como inserção, busca e remoção de dados referentes aos concursos. Além disso, o sistema é projetado para calcular e apresentar estatísticas relevantes sobre os números sorteados, fornecendo uma visão mais aprofundada dos resultados dos concursos.
